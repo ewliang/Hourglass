@@ -9,6 +9,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       daysLeft: null,
+      daysInCurrentMonth: null,
       daysInYear: null,
       dayCompleted: null,
       weekCompleted: null,
@@ -37,6 +38,7 @@ export default class App extends React.Component {
 
     this.setState({
       daysLeft,
+      daysInCurrentMonth,
       daysInYear,
       dayCompleted,
       monthCompleted
@@ -55,7 +57,7 @@ export default class App extends React.Component {
           color = "#e74c3c"
           />
 
-        <Text style = {[styles.label, styles.text]}>Month: </Text><Text style = {styles.text}>{12 - (moment().month() + 1)} Months Left</Text>
+        <Text style = {[styles.label, styles.text]}>Month: </Text><Text style = {styles.text}>{this.state.daysInCurrentMonth - moment().date()} Days Left</Text>
         <ProgressBarAndroid
           styleAttr = "Horizontal"
           indeterminate = {false}
@@ -80,10 +82,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     backgroundColor: '#222',
-    paddingTop: 32,
-    paddingBottom: 32,
-    paddingLeft: 16,
-    paddingRight: 16,
+    padding: 32,
     justifyContent: 'center'
   },
   h1: {
